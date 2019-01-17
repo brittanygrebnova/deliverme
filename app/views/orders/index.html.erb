@@ -1,0 +1,8 @@
+<%= link_to "Back To Home", user_path(current_user) %>
+
+<div>
+  <% @orders.each do |order| %>
+    <h2><%= order.readable_date %> | Total: $<%= order.total %></h2>
+    <%= link_to "View Order Details", user_order_path(current_user, order) %>
+  <% end %>
+</div>

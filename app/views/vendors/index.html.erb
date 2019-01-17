@@ -1,0 +1,10 @@
+<h2>Here's a List of Vendors You Can Order From</h2>
+
+<div>
+  <% @vendors.each do |vendor| %>
+    <h2><%= vendor.name %></h2>
+    <% vendor.items.each do |item| %>
+      <h3><%= item.name %> $<%= item.price %></h3>
+    <% end %>
+  <% end %>
+</div>

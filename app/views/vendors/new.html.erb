@@ -1,0 +1,8 @@
+<h2>Sign Up As A DeliverMe Vendor!</h2>
+
+<%= form_for @vendor do |f| %>
+  <%= f.label :name %> <%= f.text_field :name %><br>
+  <%= f.label :city %> <%= f.text_field :city %><br>
+  <%= f.label :state %> <%= f.select :state, options_for_select(us_states) %><br>
+  <%= f.submit "Create Account" %>
+<% end %>

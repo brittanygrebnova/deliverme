@@ -1,0 +1,14 @@
+<div>
+  Welcome to the DeliverMe Landing Page!
+</div>
+
+<div>
+  <% if user_signed_in? %>
+    <%= link_to("Go To Your Orders", user_orders_path(current_user)) %><br>
+    <%= link_to("Place A New Order", new_user_order_path(current_user)) %>
+  <% else %>
+    <%= link_to('Log in with Email', new_user_session_path) %><br>
+    <%= link_to('Log in with Facebook', user_facebook_omniauth_authorize_path) %><br>
+    <%= link_to('Vendor Login', new_vendor_session_path) %>
+  <% end %>
+</div>

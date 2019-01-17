@@ -1,0 +1,13 @@
+<div>
+  <h2>Edit Your Account</h2>
+</div>
+
+<div>
+  <%= form_for @user do |f| %>
+    <%= f.label "Add Money To Your Account Balance" %><br>
+    <br>
+    <%= f.label :amount %> <%= f.text_field :balance %><br>
+    <br>
+    <%= f. submit "Add Money" %>
+  <% end %>
+</div>

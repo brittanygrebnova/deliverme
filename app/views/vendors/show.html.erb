@@ -1,0 +1,6 @@
+<h2>Welcome To Your DeliverMe Vendor Account, <%= @vendor.name %>!</h2>
+
+<h2>Here's a List Of Your Orders</h2>
+<% @vendor.orders.each do |order| %>
+  <%= order.readable_date %> | <%= order.price %>
+<% end %>
