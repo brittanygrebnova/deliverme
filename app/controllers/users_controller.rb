@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  def edit
+  def add_money
     @user = User.find(params[:id])
   end
 

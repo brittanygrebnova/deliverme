@@ -25,4 +25,6 @@ Rails.application.routes.draw do
   root to: "welcome#landing_page"
 
   get "/home", to: "users#show"
+
+  get "/add_money", to: "users#add_money"
 end
