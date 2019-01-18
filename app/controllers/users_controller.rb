@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    binding.pry
   end
 
   def add_money
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:street_address, :city, :balance)
+    params.require(:user).permit(:street_address, :city, :state, :balance)
   end
 
 end
