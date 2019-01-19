@@ -6,7 +6,7 @@
   <h3>Total: $<%= @order.total %></h3>
   <% @items.each do |item| %>
     <p><%= item.name %> $<%= item.price %></p>
-    <p>Delivery Charge: $<%= item.delivery_charge %></p>
+    <p>Delivery Charge: $<%= @order.delivery_charge %></p>
   <% end %>
 </div>
 

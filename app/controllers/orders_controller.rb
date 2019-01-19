@@ -29,6 +29,9 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @items = @order.items
+    if DateTime.now > @order.created_at + 30.minutes
+      @order.delivered = true
+    end
   end
 
   def edit
