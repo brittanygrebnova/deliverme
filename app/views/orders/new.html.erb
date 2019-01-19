@@ -7,6 +7,6 @@
       Choose a Vendor: <%= f.collection_select :vendor_id, Vendor.all, :id, :name %><br>
       Choose Your Item(s):<br>
       <%= f.collection_check_boxes :item_ids, Item.all, :id, :name %><br>
-      <%= f.submit %>
+      <%= f.submit "Place Order"%>
     <% end %>
 </div>
