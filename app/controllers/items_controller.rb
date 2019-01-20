@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
 
   def new
+    @item = Item.new(vendor_id: params[:vendor_id])
   end
 
   def show
@@ -14,5 +15,5 @@ class ItemsController < ApplicationController
 
   def destroy
   end
-  
+
 end
