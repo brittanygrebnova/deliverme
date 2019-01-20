@@ -2,5 +2,6 @@
 
 <h2>Here's a List Of Your Orders</h2>
 <% @vendor.orders.each do |order| %>
-  <%= order.readable_date %> | <%= order.price %>
+  <%= order.readable_date %> | <%= order.total %>
+  <%= link_to "View Order Details", order_path(order) %>
 <% end %>
