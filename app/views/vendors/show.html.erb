@@ -1,7 +1,21 @@
-<h2>Welcome To Your DeliverMe Vendor Account, <%= @vendor.name %>!</h2>
+<div>
+  <h2>Welcome To Your DeliverMe Vendor Account, <%= @vendor.name %>!</h2>
+</div>
 
-<h2>Here's a List Of Your Orders</h2>
-<% @vendor.orders.each do |order| %>
-  <%= order.readable_date %> | <%= order.total %>
-  <%= link_to "View Order Details", order_path(order) %>
-<% end %>
+<div>
+  <h2>Here's a List Of Your Orders</h2>
+  <% @vendor.orders.each do |order| %>
+    <%= order.readable_date %> | $<%= order.total %><br>
+    <%= link_to "View Order Details", order_path(order) %>
+  <% end %>
+</div>
+
+<div>
+  <h2>And a List of the Items You Sell</h2>
+  <% @vendor.items.each do |item| %>
+    <%= item.name %>: $<%= item.price %><br>
+  <% end %>
+</div>
+
+<div>
+  <h3><%= link_to "Go Ahead and Add a New Item!", new_vendor_item_path(@vendor) %></h3>
