@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get "/add_money", to: "users#add_money"
 
+  patch "/add_money", to: "users#update_balance"
+
   devise_for :vendors, :controllers => { :sessions => "vendors/sessions"}
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
