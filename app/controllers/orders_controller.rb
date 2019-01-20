@@ -16,8 +16,9 @@ class OrdersController < ApplicationController
     @valid_items = @items.select {|item| item.vendor_id == @vendor.id}
 
     if @items == @valid_items
-      @order = Order.create!(user_id: params[:order][:user_id], vendor_id: params[:order][:vendor_id])
+      @order = Order.create(user_id: params[:order][:user_id], vendor_id: params[:order][:vendor_id])
       @order.items << @valid_items
+      @order.place_order
       redirect_to user_order_path(current_user, @order)
     else
       flash[:notice] = "Invalid Vendor/Item Combo"
