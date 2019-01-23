@@ -53,11 +53,9 @@ class OrdersController < ApplicationController
       @order.items << @valid_items
       redirect_to order_path(@order)
     else
-      @invalid_items.each do |invalid_item|
-        flash[:notice] << "Sorry, but #{@vendor.name} doesn't sell #{invalid_item.name}."
-        binding.pry
-      end
-      redirect_to edit_order_path(@order)
+      flash[:warning] = ["Sorry, but #{@vendor.name} doesn't sell these items: "]
+      @invalid_items.collect {|invalid_item| flash[:warning] << "#{invalid_item.name}/"}
+      redirect_to edit_user_order_path(current_user, @order)
     end
   end
 
