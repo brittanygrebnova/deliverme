@@ -4,6 +4,12 @@ class ItemsController < ApplicationController
     @item = Item.new(vendor_id: params[:vendor_id])
   end
 
+  def create
+    @item = Item.create(name: params[:item_name], price: params[:item_price])
+    current_vendor.items << @item
+    redirect_to vendor_path(current_vendor)
+  end
+
   def show
   end
 
