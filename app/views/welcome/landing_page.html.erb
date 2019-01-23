@@ -1,5 +1,13 @@
 <div>
-  Welcome to the DeliverMe Landing Page!
+  Welcome to the DeliverMe Landing Page
+</div>
+
+<div>
+  Check Out All These Awesome Vendors!<br>
+  <% @vendors.each do |vendor| %>
+    <%= link_to("#{vendor.name}", vendor_path(vendor)) %><br>
+    <%= vendor.city %>, <%= vendor.state %><br>
+  <% end %>
 </div>
 
 <div>
