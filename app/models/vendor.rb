@@ -5,7 +5,7 @@ class Vendor < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :items
   has_many :orders
-  has_many :users, :through => :orders
+
 
 
   scope :find_by_city, -> { where()}

@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :orders
+  has_many :items_orders
   has_many :items, :through => :orders
-  has_many :vendors, :through => :orders
 
 
   devise :database_authenticatable, :registerable,
@@ -26,6 +26,6 @@ class User < ApplicationRecord
     self.balance += amount
   end
 
-  
+
 
 end
