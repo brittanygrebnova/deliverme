@@ -14,7 +14,8 @@ class Order < ApplicationRecord
   end
 
   def place_order
-    self.user.balance - self.total
+    self.user.balance -= self.total
+    self.user.save
   end
 
   def deliver

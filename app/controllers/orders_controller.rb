@@ -14,14 +14,15 @@ class OrdersController < ApplicationController
     @vendor = Vendor.find(params[:order][:vendor_id])
     @items = Item.find(params[:order][:item_ids].reject(&:blank?))
     @valid_items = @items.select {|item| item.vendor_id == @vendor.id}
-
+    @invalid_items = @items.select {|item| item.vendor_id != @vendor.id}
     if @items == @valid_items
       @order = Order.create(user_id: params[:order][:user_id], vendor_id: params[:order][:vendor_id])
       @order.items << @valid_items
       @order.place_order
       redirect_to user_order_path(current_user, @order)
     else
-      flash[:notice] = "Invalid Vendor/Item Combo"
+      flash[:warning] = ["Sorry, but #{@vendor.name} doesn't sell these items: "]
+      @invalid_items.collect {|invalid_item| flash[:warning] << "#{invalid_item.name}/"}
       redirect_to new_user_order_path(current_user)
     end
 
@@ -43,8 +44,21 @@ class OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    @order.update(order_params)
-    redirect_to order_path(@order)
+    @vendor = Vendor.find(params[:order][:vendor_id])
+    @items = Item.find(params[:order][:item_ids].reject(&:blank?))
+    @valid_items = @items.select {|item| item.vendor_id == @vendor.id}
+    @invalid_items = @items.select {|item| item.vendor_id != @vendor.id}
+    if @items == @valid_items
+      @order = Order.update(user_id: params[:order][:user_id], vendor_id: params[:order][:vendor_id])
+      @order.items << @valid_items
+      redirect_to order_path(@order)
+    else
+      @invalid_items.each do |invalid_item|
+        flash[:notice] << "Sorry, but #{@vendor.name} doesn't sell #{invalid_item.name}."
+        binding.pry
+      end
+      redirect_to edit_order_path(@order)
+    end
   end
 
   def destroy
