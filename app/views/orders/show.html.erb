@@ -17,6 +17,8 @@
 </div>
 
 <% if current_user %>
-  <%= link_to "Edit This Order", edit_user_order_path(current_user, @order) %><br>
+  <% if !@order.delivered %>
+    <%= link_to "Edit This Order", edit_user_order_path(current_user, @order) %><br>
+  <% end %>
   <%= link_to "Back to Order Index", user_orders_path(current_user) %>
 <% end %>
