@@ -1,8 +1,8 @@
 class Order < ApplicationRecord
   belongs_to :vendor
   belongs_to :user
-  has_many :items_orders
-  has_many :items, :through => :items_orders
+  has_many :item_orders
+  has_many :items, :through => :item_orders
 
   def readable_date
     self.created_at.strftime("%b %d, %Y")

@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :orders
-  has_many :items_orders
+  has_many :item_orders
   has_many :items, :through => :orders
 
 
