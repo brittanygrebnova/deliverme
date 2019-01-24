@@ -15,7 +15,8 @@
     <%= link_to("Go To Your Orders", user_orders_path(current_user)) %><br>
     <%= link_to("Place A New Order", new_user_order_path(current_user)) %>
   <% elsif current_vendor %>
-    <%= link_to("Go To Your Orders", vendor_path(current_vendor)) %>
+    <%= link_to("Go To Your Orders", vendor_path(current_vendor)) %><br>
+    <%= link_to("Log Out", destroy_vendor_session_path(current_vendor)) %>
   <% else %>
     <%= link_to('Log in with Email', new_user_session_path) %><br>
     <%= link_to('Log in with Facebook', user_facebook_omniauth_authorize_path) %><br>
