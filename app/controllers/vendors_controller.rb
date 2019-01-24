@@ -8,6 +8,16 @@ class VendorsController < ApplicationController
     @vendor = Vendor.find(params[:id])
   end
 
+  def new
+    @vendor = Vendor.new
+  end
+
+  def create
+    binding.pry
+  end
+
+
+
 
   # def new
   #   @vendor = Vendor.new
