@@ -11,15 +11,22 @@ class OrdersController < ApplicationController
   end
 
   def create
+    @user = User.find(params[:order][:user_id])
     @vendor = Vendor.find(params[:order][:vendor_id])
     @items = Item.find(params[:order][:item_ids].reject(&:blank?))
     @valid_items = @items.select {|item| item.vendor_id == @vendor.id}
     @invalid_items = @items.select {|item| item.vendor_id != @vendor.id}
     if @items == @valid_items
-      @order = Order.create(user_id: params[:order][:user_id], vendor_id: params[:order][:vendor_id])
+      @order = Order.new(user_id: params[:order][:user_id], vendor_id: params[:order][:vendor_id])
       @order.items << @valid_items
-      @order.place_order
-      redirect_to user_order_path(current_user, @order)
+      if @order.total <= @user.balance
+        @order.save
+        @order.place_order
+        redirect_to user_order_path(current_user, @order)
+      else
+        flash[:notice] = "Sorry, you don't have enough money to place this order."
+        redirect_to user_path(current_user)
+      end
     else
       flash[:warning] = ["Sorry, but #{@vendor.name} doesn't sell these items: "]
       @invalid_items.collect {|invalid_item| flash[:warning] << "#{invalid_item.name}/"}

@@ -6,7 +6,7 @@
   <h2>Here's a List Of Your Orders</h2>
   <% @vendor.orders.each do |order| %>
     <%= order.readable_date %> | $<%= order.total %><br>
-    <%= link_to "View Order Details", order_path(order) %>
+    <%= link_to "View Order Details", order_path(order) %><br>
   <% end %>
 </div>
 
