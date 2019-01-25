@@ -3,11 +3,7 @@
 </div>
 
 <div>
-  Check Out All These Awesome Vendors!<br>
-  <% @vendors.each do |vendor| %>
-    <%= link_to("#{vendor.name}", vendor_path(vendor)) %><br>
-    <%= vendor.city %>, <%= vendor.state %><br>
-  <% end %>
+  <%= link_to("Check Out All These Awesome Vendors!", vendors_path) %>
 </div>
 
 <div>
