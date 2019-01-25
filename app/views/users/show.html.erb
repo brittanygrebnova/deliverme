@@ -3,8 +3,7 @@
   <% if user_signed_in? %>
     <img src="<%= @user.image %>">
     <h2>Hey <%= @user.user_name %>!</h2>
-    <h3>Email:</h3>
-    <h3><%= @user.email %></h3>
+    <h3>Email: <%= @user.email %></h3>
     <h3>DeliverMe Member Since:</h3>
     <h3><%= @user.readable_date %></h3>
     <h3>Address:</h3>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_23_173944) do
+ActiveRecord::Schema.define(version: 2019_01_25_165715) do
 
   create_table "item_orders", force: :cascade do |t|
     t.integer "item_id"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2019_01_23_173944) do
     t.string "user_name"
     t.string "street_address"
     t.string "city"
-    t.integer "balance"
+    t.integer "balance", default: 0
     t.string "state"
     t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true

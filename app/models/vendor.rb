@@ -8,6 +8,6 @@ class Vendor < ApplicationRecord
 
 
 
-  scope :find_by_city, -> { where()}
+
 
 end
