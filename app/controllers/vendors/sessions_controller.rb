@@ -2,7 +2,7 @@
 
 class Vendors::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-    before_action :authenticate_vendor!
+  # before_action :authenticate_vendor!
 
   def after_sign_in_path_for(resource)
     vendor_path(current_vendor)

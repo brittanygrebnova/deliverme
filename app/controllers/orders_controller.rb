@@ -57,8 +57,8 @@ class OrdersController < ApplicationController
     @valid_items = @items.select {|item| item.vendor_id == @vendor.id}
     @invalid_items = @items.select {|item| item.vendor_id != @vendor.id}
     if @items == @valid_items
-      @order = Order.update(user_id: params[:order][:user_id], vendor_id: params[:order][:vendor_id])
-      @order.items << @valid_items
+      @order.update(user_id: params[:order][:user_id], vendor_id: params[:order][:vendor_id])
+      @order.items = @valid_items
       redirect_to order_path(@order)
     else
       flash[:warning] = ["Sorry, but #{@vendor.name} doesn't sell these items: "]

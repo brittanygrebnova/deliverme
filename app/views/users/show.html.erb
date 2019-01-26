@@ -3,13 +3,10 @@
   <% if user_signed_in? %>
     <img src="<%= @user.image %>">
     <h2>Hey <%= @user.user_name %>!</h2>
-    <h3>Email: <%= @user.email %></h3>
-    <h3>DeliverMe Member Since:</h3>
-    <h3><%= @user.readable_date %></h3>
-    <h3>Address:</h3>
-    <h3><%= @user.street_address %></h3>
-    <h3><%= @user.city %>, <%= @user.state %></h3>
-    <h3>Balance: $<%= @user.balance %></h3>
+    <p>Email: <%= @user.email %></p>
+    <p>DeliverMe Member Since: <%= @user.readable_date %></p>
+    <p>Address: <%= @user.street_address %> <%= @user.city %>, <%= @user.state %></p>
+    <p>Balance: $<%= @user.balance %></p>
   <% end %>
 </div>
 

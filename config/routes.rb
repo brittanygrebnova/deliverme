@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   patch "/add_money", to: "users#update_balance"
 
-  devise_for :vendors, :controllers => { :sessions => "vendors/sessions"}
+  devise_for :vendors, :controllers => { :sessions => "vendors/sessions" }
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
