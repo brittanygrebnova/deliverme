@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   def index
     @orders = current_user.orders
@@ -23,6 +23,7 @@ class OrdersController < ApplicationController
       if @order.total <= @user.balance
         @order.save
         @order.place_order
+        flash[:notice] = "Thank you for your order! It'll be delivered in 30 minutes :)"
         redirect_to user_order_path(current_user, @order)
       else
         flash[:notice] = "Sorry, you don't have enough money to place this order."
