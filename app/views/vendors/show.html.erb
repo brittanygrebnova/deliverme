@@ -6,7 +6,11 @@
 </div>
 
 <div>
-  <h2>Here's a List Of Your Orders</h2>
+  <h3>You're Located In</h3>
+  <p><%= @vendor.city %>, <%= @vendor.state %></p>
+
+<div>
+  <h3>Here's a List Of Your Orders</h3>
   <% if @vendor.orders.empty? %>
     <%= "You don't have any orders yet." %>
   <% else %>
@@ -18,7 +22,7 @@
 </div>
 
 <div>
-  <h2>And a List of the Items You Sell</h2>
+  <h3>And a List of the Items You Sell</h3>
   <% if @vendor.items.empty? %>
     <%= "You don't have any items for sale yet." %>
   <% else %>

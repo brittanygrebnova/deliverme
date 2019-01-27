@@ -1,9 +1,20 @@
 <div>
-  Welcome to the DeliverMe Landing Page
+  Welcome to the DeliverMe Landing Page!
 </div>
 
 <div>
-  <%= link_to("Check Out All These Awesome Vendors!", vendors_path) %>
+  <h2>Check Out All These Awesome Vendors</h2>
+</div>
+
+<div>
+  <% @vendors.each do |vendor| %>
+    <h2><%= vendor.name %></h2>
+    <% vendor.items.each do |item| %>
+      <ul>
+      <li><%= item.name %> $<%= item.price %></li>
+      </ul>
+    <% end %>
+  <% end %>
 </div>
 
 <div>
