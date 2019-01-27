@@ -12,9 +12,9 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    if resource_or_scope == :user
+    if resource_or_scope.is_a?(User)
       user_path(current_user)
-    elsif resource_or_scope == :vendor
+    elsif resource_or_scope.is_a?(Vendor)
       vendor_path(current_vendor)
     end
   end

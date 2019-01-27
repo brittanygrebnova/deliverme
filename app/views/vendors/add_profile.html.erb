@@ -1,0 +1,13 @@
+<div>
+  <%= form_for @vendor, :url => url_for(:controller => 'vendors', :action => 'update_profile') do |f| %>
+    <%= f.label "Add Your Store's Info" %><br>
+    <br>
+    <%= f.label :name %> <%= f.text_field :name %><br>
+    <br>
+    <%= f.label :city %> <%= f.text_field :city %><br>
+    <br>
+    <%= f.label :state %> <%= f.select :state, options_for_select(us_states) %><br>
+    <br>
+    <%= f. submit "Submit" %>
+  <% end %>
+</div>

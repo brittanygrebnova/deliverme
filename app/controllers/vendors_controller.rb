@@ -15,6 +15,11 @@ class VendorsController < ApplicationController
   end
 
   def update_profile
+    current_vendor.name = params[:vendor][:name]
+    current_vendor.city = params[:vendor][:city]
+    current_vendor.state = params[:vendor][:state]
+    current_vendor.save
+    redirect_to vendor_path(current_vendor)
   end
 
 

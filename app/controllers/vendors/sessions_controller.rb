@@ -5,9 +5,6 @@ class Vendors::SessionsController < Devise::SessionsController
   # before_action :authenticate_vendor!
 
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
 
   # POST /resource/sign_in
   # def create
