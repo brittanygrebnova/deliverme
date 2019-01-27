@@ -26,6 +26,13 @@ class UsersController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  def add_profile
+    @user = current_user
+  end
+
+  def update_profile
+  end
+
   private
 
   def user_params

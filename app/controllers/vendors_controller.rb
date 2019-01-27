@@ -10,6 +10,13 @@ class VendorsController < ApplicationController
     end
   end
 
+  def add_profile
+    @vendor = current_vendor
+  end
+
+  def update_profile
+  end
+
 
 
 
