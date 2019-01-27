@@ -8,13 +8,13 @@ Rails.application.routes.draw do
 
   patch "/add_money", to: "users#update_balance"
 
-  get "users/add_profile", to: "users#add_profile", as: "add_user_profile"
+  get "users/:id/add_profile", to: "users#add_profile", as: "add_user_profile"
 
-  patch "users/add_profile", to: "users#update_profile", as: "update_user_profile"
+  patch "users/:id/add_profile", to: "users#update_profile", as: "update_user_profile"
 
-  get "vendors/add_profile", to: "vendors#add_profile", as: "add_vendor_profile"
+  get "vendors/:id/add_profile", to: "vendors#add_profile", as: "add_vendor_profile"
 
-  patch "vendors/add_profile", to: "vendors#update_profile", as: "update_vendor_profile"
+  patch "vendors/:id/add_profile", to: "vendors#update_profile", as: "update_vendor_profile"
 
   devise_for :vendors, :controllers => { :sessions => "vendors/sessions" }
 

@@ -31,6 +31,12 @@ class UsersController < ApplicationController
   end
 
   def update_profile
+    current_user.user_name = params[:user][:user_name]
+    current_user.street_address = params[:user][:street_address]
+    current_user.city = params[:user][:city]
+    current_user.state = params[:user][:state]
+    current_user.save
+    redirect_to user_path(current_user)
   end
 
   private
