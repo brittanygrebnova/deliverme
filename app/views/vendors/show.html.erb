@@ -16,8 +16,12 @@
 
 <div>
   <h2>And a List of the Items You Sell</h2>
-  <% @vendor.items.each do |item| %>
-    <%= item.name %>: $<%= item.price %><br>
+  <% if @vendor.items.empty? %>
+    <%= "You don't have any items for sale yet." %>
+  <% else %>
+    <% @vendor.items.each do |item| %>
+      <%= item.name %>: $<%= item.price %><br>
+    <% end %>
   <% end %>
 </div>
 
