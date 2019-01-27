@@ -19,13 +19,5 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def after_sign_up_path_for(resource_or_scope)
-    if resource_or_scope.is_a?(User)
-      add_user_profile_path(current_user)
-    elsif resource_or_scope.is_a?(Vendor)
-      add_vendor_profile_path(current_vendor)
-    end
-  end
-
 
 end
