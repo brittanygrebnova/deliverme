@@ -3,6 +3,9 @@ class OrdersController < ApplicationController
 
   def index
     @orders = current_user.orders
+    if @orders.empty?
+      flash[:notice] = "You haven't placed any orders yet."
+    end
   end
 
   def new

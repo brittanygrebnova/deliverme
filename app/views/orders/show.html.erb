@@ -5,15 +5,15 @@
 <% end %>
 
 <div>
-    <h2>Order #<%= "#{@order.id}" %></h2>
-    <h3>Order Status: <%= @order.delivered == true ? "Delivered" : "Undelivered" %></h3>
-    <h3>Vendor: <%= @vendor.name %>
-    <h3>Customer: <%= @user.user_name %>
-    <h3>Total: $<%= @order.total %></h3>
-    <% @items.each do |item| %>
-      <p><%= item.name.titleize %> $<%= item.price %></p>
-    <% end %>
-    <p>Delivery Charge: $<%= @order.delivery_charge %></p>
+  <h2>Order #<%= "#{@order.id}" %></h2>
+  <h3>Order Status: <%= @order.delivered == true ? "Delivered" : "Undelivered" %></h3>
+  <h3>Vendor: <%= @vendor.name %>
+  <h3>Customer: <%= @user.user_name %>
+  <h3>Total: $<%= @order.total %></h3>
+  <% @items.each do |item| %>
+    <p><%= item.name.titleize %> $<%= item.price %></p>
+  <% end %>
+  <p>Delivery Charge: $<%= @order.delivery_charge %></p>
 </div>
 
 <% if current_user %>
