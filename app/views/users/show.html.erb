@@ -1,11 +1,19 @@
 
 <div>
   <% if user_signed_in? %>
-    <img src="<%= @user.image %>">
-    <h2>Hey <%= @user.user_name %>!</h2>
+    <% if @user.image %>
+      <img src="<%= @user.image %>">
+    <% end %>
+    <% if @user.user_name %>
+      <h2>Hey <%= @user.user_name %>!</h2>
+    <% else %>
+      <h3><%= link_to "Add Your Profile Info", add_user_profile_path %></h3>
+    <% end %>
     <p>Email: <%= @user.email %></p>
     <p>DeliverMe Member Since: <%= @user.readable_date %></p>
-    <p>Address: <%= @user.street_address %> <%= @user.city %>, <%= @user.state %></p>
+    <% if @user.street_address.present? && @user.city.present? && @user.state.present? %>
+      <p>Address: <%= @user.street_address %> <%= @user.city %>, <%= @user.state %></p>
+    <% end %>
     <p>Balance: $<%= @user.balance %></p>
   <% end %>
 </div>

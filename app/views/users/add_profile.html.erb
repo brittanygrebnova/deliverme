@@ -8,7 +8,7 @@
     <br>
     <%= f.label :city %> <%= f.text_field :city %><br>
     <br>
-    <%= f.label :state %> <%= f.text_field :state %><br>
+    <%= f.label :state %> <%= f.select :state, options_for_select(us_states) %><br>
     <br>
     <%= f. submit "Submit" %>
   <% end %>
