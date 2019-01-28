@@ -15,15 +15,15 @@
     <% end %>
     <p>Balance: $<%= @user.balance %></p>
 
-  <%= link_to "Add Money", add_money_path %>
+  <%= link_to "Add Money", add_money_path %><br>
 
 
-  <%= link_to "Edit Your Account Info", edit_user_path(@user) %>
+  <%= link_to "Edit Your Account Info", edit_user_path(@user) %><br>
 
 
-  <%= link_to "Your Orders", user_orders_path(@user) %>
+  <%= link_to "Your Orders", user_orders_path(@user) %><br>
 
 
-  <%= link_to "Place a New Order", new_user_order_path(@user) %>
+  <%= link_to "Place a New Order", new_user_order_path(@user) %><br>
   <% end %>
 </div>

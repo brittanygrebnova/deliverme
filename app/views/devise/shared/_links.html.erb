@@ -23,3 +23,9 @@
     <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
   <% end -%>
 <% end -%>
+
+<%- if resource.is_a?(User) %>
+  <%= link_to "Vendor Sign In", new_vendor_session_path %>
+<%- elsif resource.is_a?(Vendor) %>
+  <%= link_to "User Sign In", new_user_session_path %>
+<%- end %>
