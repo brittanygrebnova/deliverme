@@ -1,24 +1,9 @@
-# README
+# DeliverMe: A Rails App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Create a user account and place an order with one of the DeliverMe vendors to have your ordered 'delivered' straight to your door!
 
-Things you may want to cover:
+Some specifications:
 
-* Ruby version
+* Ruby version(ruby '2.3.3')
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Rails version('rails', '~> 5.2.2')
