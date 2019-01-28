@@ -16,19 +16,19 @@ Rails.application.routes.draw do
 
   patch "vendors/:id/add_profile", to: "vendors#update_profile", as: "update_vendor_profile"
 
-  devise_for :vendors, :controllers => { :sessions => "vendors/sessions" }
+  devise_for :vendors, :controllers => { :sessions => "vendors/sessions", :registrations => "vendors/registrations" }
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => { :sessions => "users/sessions", :registrations => "users/registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :orders
 
   resources :vendors
 
+  resources :users
+
   resources :users do
     resources :orders
   end
-
-  resources :users
 
   resources :vendors do
     resources :items
