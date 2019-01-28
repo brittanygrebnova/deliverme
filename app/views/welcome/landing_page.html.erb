@@ -1,14 +1,14 @@
 <div>
-  Welcome to the DeliverMe Landing Page!
+  <h2>Welcome to the DeliverMe Landing Page!</h2>
 </div>
 
 <div>
-  <h2>Check Out All These Awesome Vendors</h2>
+  <h3>Check Out All These Awesome Vendors</h3>
 </div>
 
 <div>
   <% @vendors.each do |vendor| %>
-    <h2><%= vendor.name %></h2>
+    <h3><%= vendor.name %></h3>
     <% vendor.items.each do |item| %>
       <ul>
       <li><%= item.name %> $<%= item.price %></li>
