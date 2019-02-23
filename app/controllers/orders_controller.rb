@@ -21,9 +21,9 @@ class OrdersController < ApplicationController
     @valid_items = @items.select {|item| item.vendor_id == @vendor.id}
     @invalid_items = @items.select {|item| item.vendor_id != @vendor.id}
     if @items == @valid_items
-      @order = Order.new(user_id: params[:order][:user_id], vendor_id: params[:order][:vendor_id])
-      @order.items << @valid_items
+      @order = Order.create(user_id: params[:order][:user_id], vendor_id: params[:order][:vendor_id])
       if @order.total <= @user.balance
+        @order.items = @valid_items
         @order.save
         @order.place_order
         flash[:notice] = "Thank you for your order! It'll be delivered in 30 minutes :)"
@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @items = @order.items
     @user = @order.user
-    @vendor = @order.vendor
+    # @vendor = @order.vendor
     if DateTime.now > @order.created_at + 30.minutes
       @order.delivered = true
     end

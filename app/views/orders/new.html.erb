@@ -4,8 +4,8 @@
   <h2>Place a New Order</h2>
     <%= form_for @order do |f| %>
       <%= f.hidden_field :user_id %>
-      Choose a Vendor: <%= f.collection_select :vendor_id, Vendor.all, :id, :name %><br>
-      Choose Your Item(s):<br>
+      Choose a Vendor: <%= f.collection_select :vendor_id, Vendor.all, :id, :name, include_blank: false, include_hidden: false %><br>
+      Choose Your Item(s ):<br>
       <%= f.collection_check_boxes :item_ids, Item.all, :id, :name %><br>
       <%= f.submit "Place Order"%>
     <% end %>

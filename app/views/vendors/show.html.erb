@@ -27,7 +27,7 @@
     <%= "You don't have any items for sale yet." %>
   <% else %>
     <% @vendor.items.each do |item| %>
-      <%= item.name %>: $<%= item.price %><br>
+      <%= item.name.titleize %>: $<%= item.price %><br>
     <% end %>
   <% end %>
 </div>

@@ -34,6 +34,10 @@ Rails.application.routes.draw do
     resources :items
   end
 
+  resources :orders do
+    resources :items
+  end
+
   # resources :vendors do
   #   resources :orders, only: [:index, :show]
   # end
