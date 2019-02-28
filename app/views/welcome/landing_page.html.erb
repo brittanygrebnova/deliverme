@@ -1,3 +1,26 @@
+<div id="navbar">
+  <% if user_signed_in? %>
+    <ul>
+      <li><%= link_to("Go To Your Orders", user_orders_path(current_user)) %></li>
+      <li><%= link_to("Place A New Order", new_user_order_path(current_user)) %></li>
+      <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+    </ul>
+  <% elsif vendor_signed_in? %>
+    <ul>
+      <li><%= link_to("Go To Your Orders", vendor_path(current_vendor)) %></li>
+      <li><%= link_to("Log Out", destroy_vendor_session_path, method: :delete) %></li>
+    </ul>
+  <% else %>
+    <ul>
+      <li><%= link_to('User Registration', new_user_registration_path) %></li>
+      <li><%= link_to('User Log in with Email', new_user_session_path) %></li>
+      <li><%= link_to('User Log in with Facebook', user_facebook_omniauth_authorize_path) %></li>
+      <li><%= link_to('Vendor Registration', new_vendor_registration_path) %></li>
+      <li><%= link_to('Vendor Login', new_vendor_session_path) %></li>
+    </ul>
+  <% end %>
+</div>
+
 <div>
   <h2>Welcome to the DeliverMe Landing Page!</h2>
 </div>
@@ -14,21 +37,5 @@
       <li><%= item.name %> $<%= item.price %></li>
       </ul>
     <% end %>
-  <% end %>
-</div>
-
-<div>
-  <% if user_signed_in? %>
-    <%= link_to("Go To Your Orders", user_orders_path(current_user)) %><br>
-    <%= link_to("Place A New Order", new_user_order_path(current_user)) %>
-  <% elsif vendor_signed_in? %>
-    <%= link_to("Go To Your Orders", vendor_path(current_vendor)) %><br>
-    <%= link_to("Log Out", destroy_vendor_session_path, method: :delete) %>
-  <% else %>
-    <%= link_to('User Registration', new_user_registration_path) %><br>
-    <%= link_to('User Log in with Email', new_user_session_path) %><br>
-    <%= link_to('User Log in with Facebook', user_facebook_omniauth_authorize_path) %><br>
-    <%= link_to('Vendor Registration', new_vendor_registration_path) %><br>
-    <%= link_to('Vendor Login', new_vendor_session_path) %>
   <% end %>
 </div>

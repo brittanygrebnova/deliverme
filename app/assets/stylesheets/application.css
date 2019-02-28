@@ -18,7 +18,7 @@ div {
    margin-top: 10px;
    margin-bottom: 20px;
    font-family: Helvetica;
- }
+  }
 
 a:link {
    color: orange;
@@ -26,8 +26,33 @@ a:link {
    font-weight: bold;
    margin-top: 20px;
    margin-bottom: 20px;
- }
+  }
 
 a:active {
   color: blue;
- }
+  }
+
+#navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  }
+
+#navbar li {
+  float: left;
+  }
+
+#navbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 8px 10px;
+  text-decoration: none;
+  }
+
+  /* Change the link color to #111 (black) on hover */
+#navbar li a:hover {
+  background-color: #111;
+  }
