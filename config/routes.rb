@@ -31,6 +31,10 @@ Rails.application.routes.draw do
   end
 
   resources :vendors do
+    resources :orders
+  end
+
+  resources :vendors do
     resources :items
   end
 

@@ -1,0 +1,11 @@
+<div>
+  <% @vendors.each do |vendor| %>
+    <h3><%= vendor.name %></h3>
+    <% vendor.items.each do |item| %>
+      <ul>
+      <li><%= item.name %> $<%= item.price %></li>
+      </ul>
+    <% end %>
+    <h3><%= link_to "Order From This Vendor", new_vendor_order_path(vendor) %>
+  <% end %>
+</div>

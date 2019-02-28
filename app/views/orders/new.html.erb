@@ -2,11 +2,23 @@
 
 <div>
   <h2>Place a New Order</h2>
-    <%= form_for @order do |f| %>
-      <%= f.hidden_field :user_id %>
-      Choose a Vendor: <%= f.collection_select :vendor_id, Vendor.all, :id, :name, include_blank: false, include_hidden: false %><br>
-      Choose Your Item(s ):<br>
-      <%= f.collection_check_boxes :item_ids, Item.all, :id, :name %><br>
-      <%= f.submit "Place Order"%>
+  <%= form_for @order do |f| %>
+    <%= f.hidden_field :user_id %>
+    Choose a Vendor: <%= f.collection_select :vendor_id, Vendor.all, :id, :name %><br>
+    Choose Your Item(s ):<br>
+    <%= f.collection_check_boxes(:item_ids, Item.all, :id, :name) do |b| %><br>
+    <div class="row">
+      <%= b.label(class: "check_box") do %>
+        <div class="col-xs-4">
+          <%= b.check_box(class: "check_box") %>
+        </div>
+
+        <div class="col-xs-8">
+          <%= b.object.name %>
+        </div>
+      <% end %>
+    </div>
     <% end %>
+    <%= f.submit "Place Order"%>
+  <% end %>
 </div>
