@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
     @item = Item.create(name: params[:item_name], price: params[:item_price])
     current_vendor.items << @item
     redirect_to vendor_path(current_vendor)
+    #try implementing build method
   end
 
   def show

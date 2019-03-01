@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :check_user, :only => [:new, :create, :edit, :show]
 
   def index
     @orders = current_user.orders
@@ -18,12 +18,12 @@ class OrdersController < ApplicationController
     @user = User.find(params[:order][:user_id])
     @vendor = Vendor.find(params[:order][:vendor_id])
     @items = Item.find(params[:order][:item_ids].reject(&:blank?))
-    @valid_items = @items.select {|item| item.vendor_id == @vendor.id}
-    @invalid_items = @items.select {|item| item.vendor_id != @vendor.id}
-    if @items == @valid_items
+    valid_items = @items.select {|item| item.vendor_id == @vendor.id}
+    invalid_items = @items.select {|item| item.vendor_id != @vendor.id}
+    if @items == valid_items
       @order = Order.create(user_id: params[:order][:user_id], vendor_id: params[:order][:vendor_id])
       if @order.total <= @user.balance
-        @order.items = @valid_items
+        @order.items = valid_items
         @order.save
         @order.place_order
         flash[:notice] = "Thank you for your order! It'll be delivered in 30 minutes :)"
@@ -34,7 +34,7 @@ class OrdersController < ApplicationController
       end
     else
       flash[:warning] = ["Sorry, but #{@vendor.name} doesn't sell these items: "]
-      @invalid_items.collect {|invalid_item| flash[:warning] << "#{invalid_item.name}/"}
+      invalid_items.collect {|invalid_item| flash[:warning] << "#{invalid_item.name}/"}
       redirect_to new_user_order_path(current_user)
     end
 
@@ -42,9 +42,6 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @items = @order.items
-    @user = @order.user
-    # @vendor = @order.vendor
     if DateTime.now > @order.created_at + 30.minutes
       @order.delivered = true
     end
@@ -63,7 +60,7 @@ class OrdersController < ApplicationController
     if @items == @valid_items
       @order.update(user_id: params[:order][:user_id], vendor_id: params[:order][:vendor_id])
       @order.items = @valid_items
-      redirect_to order_path(@order)
+      redirect_to user_order_path(@order.user, @order)
     else
       flash[:warning] = ["Sorry, but #{@vendor.name} doesn't sell these items: "]
       @invalid_items.collect {|invalid_item| flash[:warning] << "#{invalid_item.name}/"}
@@ -79,5 +76,13 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:user_id, :vendor_id, item_ids: [])
   end
+
+  def check_user
+    if current_user.id != params[:user_id].to_i
+      flash[:notice] = "That order doesn't belong to you."
+      redirect_to user_path(current_user)
+    end
+  end
+
 
 end

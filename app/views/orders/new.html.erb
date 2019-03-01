@@ -2,7 +2,7 @@
 
 <div>
   <h2>Place a New Order</h2>
-  <%= form_for @order do |f| %>
+  <%= form_for [@order.user, @order] do |f| %>
     <%= f.hidden_field :user_id %>
     Choose a Vendor: <%= f.collection_select :vendor_id, Vendor.all, :id, :name %><br>
     Choose Your Item(s ):<br>
