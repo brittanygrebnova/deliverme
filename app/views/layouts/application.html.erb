@@ -17,6 +17,8 @@
     <% end %><br>
     <% if user_signed_in? %>
       <%= link_to('Logout', destroy_user_session_path, method: :delete) %><br>
+    <% elsif vendor_signed_in? %>
+      <%= link_to('Logout', destroy_vendor_session_path, method: :delete) %><br>
     <% end %>
     <%= yield %>
   </body>
