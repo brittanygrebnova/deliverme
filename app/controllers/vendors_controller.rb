@@ -2,6 +2,7 @@ class VendorsController < ApplicationController
 
   def index
     @vendors = Vendor.all
+    @user = User.find(params[:user_id])
   end
 
   def show

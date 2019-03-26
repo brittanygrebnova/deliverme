@@ -21,9 +21,9 @@
   <%= link_to "Edit Your Account Info", edit_user_path(@user) %><br>
 
 
-  <%= link_to "Your Orders", user_orders_path(@user) %><br>
+  <%= link_to "Your Orders", orders_path %><br>
 
 
-  <%= link_to "Place a New Order", new_user_order_path(@user) %><br>
+  <%= link_to "Place a New Order", vendors_path(:user_id => current_user.id) %><br>
   <% end %>
 </div>

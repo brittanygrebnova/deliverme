@@ -20,7 +20,7 @@
 
 <% if current_user %>
   <% if !@order.delivered %>
-    <%= link_to "Edit This Order", edit_user_order_path(current_user, @order) %><br>
+    <%= link_to "Edit This Order", edit_order_path(@order) %><br>
   <% end %>
-  <%= link_to "Back to Order Index", user_orders_path(current_user) %>
+  <%= link_to "Back to Order Index", orders_path(current_user) %>
 <% end %>

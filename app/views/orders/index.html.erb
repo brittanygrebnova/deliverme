@@ -3,6 +3,6 @@
 <div>
   <% @orders.each do |order| %>
     <h2><%= order.readable_date %> | Total: $<%= order.total %></h2>
-    <%= link_to "View Order Details", user_order_path(current_user, order) %>
+    <%= link_to "View Order Details", order_path(order) %>
   <% end %>
 </div>

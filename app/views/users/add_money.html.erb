@@ -2,7 +2,7 @@
   <%= form_for @user, :url => url_for(:controller => 'users', :action => 'update_balance') do |f| %>
     <%= f.label "Add Money To Your Account Balance" %><br>
     <br>
-    <%= f.label :amount %> $<%= f.text_field :balance, :value => 0 %><br>
+    <%= f.label :amount %> $<%= f.text_field :balance, :value => "" %><br>
     <br>
     <%= f. submit "Add Money" %>
   <% end %>

@@ -1,5 +1,4 @@
 class OrdersController < ApplicationController
-  before_action :check_user, :only => [:new, :create, :edit, :show]
 
   def index
     @orders = current_user.orders
@@ -9,35 +8,24 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.new(user_id: params[:user_id])
-    @vendors = Vendor.all
-    @items = Item.all
+    @order = Order.new(vendor_id: params[:vendor_id])
+    @vendor = Vendor.find(params[:vendor_id])
+    @items = @vendor.items
   end
 
   def create
-    @user = User.find(params[:order][:user_id])
     @vendor = Vendor.find(params[:order][:vendor_id])
     @items = Item.find(params[:order][:item_ids].reject(&:blank?))
-    valid_items = @items.select {|item| item.vendor_id == @vendor.id}
-    invalid_items = @items.select {|item| item.vendor_id != @vendor.id}
-    if @items == valid_items
-      @order = Order.create(user_id: params[:order][:user_id], vendor_id: params[:order][:vendor_id])
-      if @order.total <= @user.balance
-        @order.items = valid_items
-        @order.save
-        @order.place_order
-        flash[:notice] = "Thank you for your order! It'll be delivered in 30 minutes :)"
-        redirect_to user_order_path(current_user, @order)
-      else
-        flash[:notice] = "Sorry, you don't have enough money to place this order."
-        redirect_to user_path(current_user)
-      end
+    @order = current_user.orders.build(order_params)
+    if @order.total <= current_user.balance
+      @order.save
+      @order.place_order
+      flash[:notice] = "Thank you for your order! It'll be delivered in 30 minutes :)"
+      redirect_to order_path(@order)
     else
-      flash[:warning] = ["Sorry, but #{@vendor.name} doesn't sell these items: "]
-      invalid_items.collect {|invalid_item| flash[:warning] << "#{invalid_item.name}/"}
-      redirect_to new_user_order_path(current_user)
+      flash[:notice] = "Sorry, you don't have enough money to place this order."
+      redirect_to user_path(current_user)
     end
-
   end
 
   def show
@@ -49,22 +37,21 @@ class OrdersController < ApplicationController
 
   def edit
     @order = Order.find(params[:id])
+    @vendor = @order.vendor
+    @items = @vendor.items
   end
 
   def update
     @order = Order.find(params[:id])
-    @vendor = Vendor.find(params[:order][:vendor_id])
-    @items = Item.find(params[:order][:item_ids].reject(&:blank?))
-    @valid_items = @items.select {|item| item.vendor_id == @vendor.id}
-    @invalid_items = @items.select {|item| item.vendor_id != @vendor.id}
-    if @items == @valid_items
-      @order.update(user_id: params[:order][:user_id], vendor_id: params[:order][:vendor_id])
-      @order.items = @valid_items
-      redirect_to user_order_path(@order.user, @order)
+    @order.assign_attributes(order_params)
+    if @order.total <= current_user.balance
+      @order.save
+      @order.place_order
+      flash[:notice] = "Thank you for your order! It'll be delivered in 30 minutes :)"
+      redirect_to order_path(@order)
     else
-      flash[:warning] = ["Sorry, but #{@vendor.name} doesn't sell these items: "]
-      @invalid_items.collect {|invalid_item| flash[:warning] << "#{invalid_item.name}/"}
-      redirect_to edit_user_order_path(current_user, @order)
+      flash[:notice] = "Sorry, you don't have enough money to place this order."
+      redirect_to user_path(current_user)
     end
   end
 
@@ -75,13 +62,6 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:user_id, :vendor_id, item_ids: [])
-  end
-
-  def check_user
-    if current_user.id != params[:user_id].to_i
-      flash[:notice] = "That order doesn't belong to you."
-      redirect_to user_path(current_user)
-    end
   end
 
 

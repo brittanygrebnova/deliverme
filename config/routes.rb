@@ -26,12 +26,8 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :users do
-    resources :orders
-  end
-
   resources :vendors do
-    resources :orders
+    resources :orders, only: [:new, :show]
   end
 
   resources :vendors do
