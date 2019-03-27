@@ -6,7 +6,7 @@
     <% if @user.user_name %>
       <h2>Hey <%= @user.user_name %>!</h2>
     <% else %>
-      <h3><%= link_to "Add Your Profile Info", add_user_profile_path %></h3>
+      <h3><button class="button"><%= link_to "Add Your Profile Info", add_user_profile_path %></button></h3>
     <% end %>
     <p>Email: <%= @user.email %></p>
     <p>DeliverMe Member Since: <%= @user.readable_date %></p>
@@ -15,15 +15,15 @@
     <% end %>
     <p>Balance: $<%= @user.balance %></p>
 
-  <%= link_to "Add Money", add_money_path %><br>
+  <button class="button"><%= link_to "Add Money", add_money_path %></button><br>
 
 
-  <%= link_to "Edit Your Account Info", edit_user_path(@user) %><br>
+  <button class="button"><%= link_to "Edit Your Account Info", edit_user_path(@user) %></button><br>
 
 
-  <%= link_to "Your Orders", orders_path %><br>
+  <button class="button"><%= link_to "Your Orders", orders_path %></button><br>
 
 
-  <%= link_to "Place a New Order", vendors_path(:user_id => current_user.id) %><br>
+  <button class="button"><%= link_to "Place a New Order", vendors_path(:user_id => current_user.id) %></button><br>
   <% end %>
 </div>

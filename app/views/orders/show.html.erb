@@ -1,7 +1,7 @@
 <% if current_user %>
-  <%= link_to "Back To Home", user_path(current_user) %>
+  <button class="button"><%= link_to "Back To Home", user_path(current_user) %></button>
 <% elsif current_vendor %>
-  <%= link_to "Back To Home", vendor_path(current_vendor) %>
+  <button class="button"><%= link_to "Back To Home", vendor_path(current_vendor) %></button>
 <% end %>
 
 <div>
@@ -20,7 +20,7 @@
 
 <% if current_user %>
   <% if !@order.delivered %>
-    <%= link_to "Edit This Order", edit_order_path(@order) %><br>
+    <button class="button"><%= link_to "Edit This Order", edit_order_path(@order) %></button><br>
   <% end %>
-  <%= link_to "Back to Order Index", orders_path(current_user) %>
+  <button class="button"><%= link_to "Back to Order Index", orders_path(current_user) %></button>
 <% end %>

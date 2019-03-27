@@ -1,7 +1,7 @@
 <div>
   <h2>Welcome To Your DeliverMe Vendor Account <%= @vendor.name %>!</h2>
   <% if !@vendor.name.present? %>
-    <%= link_to "Add Your Profile Info", add_vendor_profile_path %>
+    <button class="button"><%= link_to "Add Your Profile Info", add_vendor_profile_path %></button>
   <% end %>
 </div>
 
@@ -16,7 +16,7 @@
   <% else %>
     <% @vendor.orders.each do |order| %>
       <%= order.readable_date %> | $<%= order.total %><br>
-      <%= link_to "View Order Details", order_path(order) %><br>
+      <button class="button"><%= link_to "View Order Details", order_path(order) %></button><br>
     <% end %>
   <% end %>
 </div>
@@ -33,5 +33,5 @@
 </div>
 
 <div>
-  <h3><%= link_to "Go Ahead and Add a New Item!", new_vendor_item_path(@vendor) %></h3>
+  <h3><button class="button"><%= link_to "Go Ahead and Add a New Item!", new_vendor_item_path(@vendor) %></button></h3>
 </div>

@@ -6,6 +6,6 @@
       <li><%= item.name %> $<%= item.price %></li>
       </ul>
     <% end %>
-    <h3><%= link_to "Order From This Vendor", new_vendor_order_path(vendor) %>
+    <h3><button class="button"><%= link_to "Order From This Vendor", new_vendor_order_path(vendor) %></button>
   <% end %>
 </div>

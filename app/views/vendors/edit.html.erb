@@ -4,5 +4,5 @@
   <%= f.label :name %> <%= f.text_field :name %><br>
   <%= f.label :city %> <%= f.text_field :city %><br>
   <%= f.label :state %> <%= f.select :state, options_for_select(us_states) %><br>
-  <%= f.submit "Submit" %>
+  <button class="button"><%= f.submit "Submit" %></button>
 <% end %>

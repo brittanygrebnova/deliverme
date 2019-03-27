@@ -1,4 +1,4 @@
-<%= link_to "Back To Home", user_path(current_user) %>
+<button class="button"><%= link_to "Back To Home", user_path(current_user) %></button>
 
 <div>
   <h2>Edit Order #<%= "#{@order.id}" %></h2>
@@ -6,6 +6,6 @@
     <%= f.hidden_field :vendor_id %>
     Choose Your Item(s):<br>
     <%= f.collection_check_boxes :item_ids, @items, :id, :name %><br>
-    <%= f.submit %>
+    <button class="button"><%= f.submit %></button>
   <% end %>
 </div>
