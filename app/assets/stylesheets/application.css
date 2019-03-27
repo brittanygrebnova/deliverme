@@ -20,7 +20,6 @@ div {
   }
 
 body {
-  background-color: #FFFFFF;
   font-family: Helvetica
 }
 
@@ -58,6 +57,7 @@ a:visited {
 }
 
 #wrap {
-	width: 900px;
+	width: 700px;
 	margin: 0 auto;
+  text-align: center;
 }

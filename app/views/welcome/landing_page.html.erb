@@ -25,9 +25,7 @@
   <% @vendors.each do |vendor| %>
     <h3><%= vendor.name %></h3>
     <% vendor.items.each do |item| %>
-      <ul>
-      <li><%= item.name %> $<%= item.price %></li>
-      </ul>
+      | <%= item.name %> $<%= item.price %> |
     <% end %>
   <% end %>
 </div>
