@@ -6,6 +6,6 @@
     <%= f.hidden_field :vendor_id %>
     Choose Your Item(s ):<br>
     <%= f.collection_check_boxes(:item_ids, @items, :id, :name) %><br>
-    <button class="button"><%= f.submit "Place Order"%></button>
+    <%= f.submit "Place Order", :class => "button" %>
   <% end %>
 </div>

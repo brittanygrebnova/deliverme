@@ -5,5 +5,5 @@
   <%= f.label :street_address %>: <%= f.text_field :street_address %><br>
   <%= f.label :city %>: <%= f.text_field :city %><br>
   <%= f.label :state %> <%= f.select :state, options_for_select(us_states) %><br>
-  <button class="button"><%= f.submit "Edit Info" %></button>
+  <%= f.submit "Edit Info", :class => "button" %>
 <% end %>

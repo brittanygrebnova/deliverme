@@ -3,4 +3,4 @@
 <%= form_tag(controller: "items", action: "create", method: "post") %>
   <%= label_tag :name %>: <%= text_field_tag(:item_name) %>
   <%= label_tag :price %>: $<%= text_field_tag(:item_price) %>
-<button class="button"><%= submit_tag "Add Item" %></button>
+<%= submit_tag "Add Item", :class => "button" %>
