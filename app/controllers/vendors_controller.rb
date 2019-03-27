@@ -8,6 +8,7 @@ class VendorsController < ApplicationController
   def show
     if current_vendor
       @vendor = current_vendor
+      render json: @vendor
     end
   end
 

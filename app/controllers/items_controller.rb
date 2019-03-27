@@ -1,5 +1,8 @@
 class ItemsController < ApplicationController
 
+  def index
+  end
+
   def new
     @item = Item.new(vendor_id: params[:vendor_id])
   end
