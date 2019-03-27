@@ -5,17 +5,42 @@
 <% end %>
 
 <div>
-  <h2>Order #<%= "#{@order.id}" %></h2>
-  <h3>Order Status: <%= @order.delivered == true ? "Delivered" : "Undelivered" %></h3>
-  <% if @order.vendor %>
-    <h3>Vendor: <%= @order.vendor.name %>
-  <% end %>
-  <h3>Customer: <%= @order.user.user_name %>
-  <h3>Total: $<%= @order.total %></h3>
-  <% @order.items.each do |item| %>
-    <p><%= item.name.titleize %> $<%= item.price %></p>
-  <% end %>
-  <p>Delivery Charge: $<%= @order.delivery_charge %></p>
+  <table class="order-detail-table">
+    <tr>
+      <td><strong>Order #</strong></td>
+      <td><%= "#{@order.id}" %></td>
+    </tr>
+    <tr>
+      <td><strong>Order Status:</strong></td>
+      <td><%= @order.delivered == true ? "Delivered" : "Undelivered" %></td>
+    </tr>
+    <tr>
+      <td><strong>Vendor:</strong></td>
+      <% if current_user %>
+        <td><%= @order.vendor.name %></td>
+      <% elsif current_vendor %>
+        <td><strong>You!</strong></td>
+      <% end %>
+    </tr>
+    <tr>
+      <td><strong>Customer:</strong</td>
+      <td><%= @order.user.user_name %></td>
+    </tr>
+    <tr>
+      <td><strong>Items:</strong></td>
+      <% @order.items.each_with_index do |item, index| %>
+        <td><%= "Item #{index + 1}" %>: <%= item.name.titleize %> $<%= item.price %></td>
+      <% end %><br>
+    </tr>
+    <tr>
+      <td><strong>Delivery Charge:</strong></td>
+      <td>$<%= @order.delivery_charge %></td>
+    </tr>
+    <tr>
+      <td><strong>Total:</strong></td>
+      <td>$<%= @order.total %></td>
+    </tr>
+  </table>
 </div>
 
 <% if current_user %>

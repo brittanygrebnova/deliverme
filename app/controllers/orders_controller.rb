@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
     if DateTime.now > @order.created_at + 30.minutes
       @order.delivered = true
     end
-    render json: @order
+    # render json: @order
   end
 
   def edit

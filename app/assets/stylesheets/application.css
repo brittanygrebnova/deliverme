@@ -62,3 +62,7 @@ table {
 	margin: 0 auto;
   text-align: center;
 }
+
+table.order-detail-table {
+  text-align: left;
+}

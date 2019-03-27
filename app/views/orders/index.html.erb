@@ -1,8 +1,12 @@
 <button class="button"><%= link_to "Back To Home", user_path(current_user) %></button>
 
 <div>
+  <table class="order-table">
+    <h2>Your Orders</h2>
   <% @orders.each do |order| %>
-    <h2><%= order.readable_date %> | Total: $<%= order.total %></h2>
-    <button class="button"><%= link_to "View Order Details", order_path(order) %></button>
+  <tr>
+    <td><strong><%= order.readable_date %> | Total: $<%= order.total %></strong><br><button class="button"><%= link_to "View Order Details", order_path(order) %></button></td>
+  </tr>
   <% end %>
+  </table>
 </div>
