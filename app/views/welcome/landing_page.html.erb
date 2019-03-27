@@ -1,26 +1,20 @@
 <div id="navbar">
   <% if user_signed_in? %>
-    <ul>
-      <li><%= link_to("Go To Your Orders", user_orders_path(current_user)) %></li>
-      <li><%= link_to("Place a New Order", vendors_path(:user_id => current_user.id)) %></li>
-    </ul>
+      <%= button_to("Go To Your Orders", user_orders_path(current_user)) %>
+      <%= button_to("Place a New Order", vendors_path(:user_id => current_user.id)) %>
   <% elsif vendor_signed_in? %>
-    <ul>
-      <li><%= link_to("Go To Your Orders", vendor_path(current_vendor)) %></li>
-    </ul>
+      <%= button_to("Go To Your Orders", vendor_path(current_vendor)) %>
   <% else %>
-    <ul>
-      <li><%= link_to('User Registration', new_user_registration_path) %></li>
-      <li><%= link_to('User Log in with Email', new_user_session_path) %></li>
-      <li><%= link_to('User Log in with Facebook', user_facebook_omniauth_authorize_path) %></li>
-      <li><%= link_to('Vendor Registration', new_vendor_registration_path) %></li>
-      <li><%= link_to('Vendor Login', new_vendor_session_path) %></li>
-    </ul>
+      <%= button_to('User Registration', new_user_registration_path) %>
+      <%= button_to('User Log in with Email', new_user_session_path) %>
+      <%= button_to('User Log in with Facebook', user_facebook_omniauth_authorize_path) %>
+      <%= button_to('Vendor Registration', new_vendor_registration_path) %>
+      <%= button_to('Vendor Login', new_vendor_session_path) %>
   <% end %>
 </div>
 
 <div>
-  <h2>Welcome to the DeliverMe Landing Page!</h2>
+  <h1>DeliverMe</h1>
 </div>
 
 <div>
