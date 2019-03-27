@@ -10,7 +10,7 @@ class Order < ApplicationRecord
 
   def total
     sub_total = self.items.sum(:price)
-    sub_total + 5
+    sub_total + delivery_charge
   end
 
   def place_order
