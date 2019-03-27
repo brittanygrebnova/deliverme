@@ -10,6 +10,7 @@
   </head>
 
   <body>
+  <div id="wrap">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <% if flash[:warning] %>
@@ -21,5 +22,6 @@
       <button class="button"><%= link_to('Logout', destroy_vendor_session_path, method: :delete) %></button><br>
     <% end %>
     <%= yield %>
+  </div>
   </body>
 </html>
