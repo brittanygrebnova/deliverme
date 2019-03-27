@@ -14,11 +14,6 @@
  *= require_self
  */
 
-div {
-   margin-top: 10px;
-   margin-bottom: 20px;
-  }
-
 body {
   font-family: Helvetica
 }
@@ -58,6 +53,12 @@ a:visited {
 
 #wrap {
 	width: 700px;
+	margin: 0 auto;
+  text-align: center;
+}
+
+table {
+  width: 700px;
 	margin: 0 auto;
   text-align: center;
 }

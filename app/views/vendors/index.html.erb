@@ -1,9 +1,17 @@
 <div>
+  <table class="vendor-table">
   <% @vendors.each do |vendor| %>
-    <h3><%= vendor.name %></h3>
+    <tr>
+      <td><h2><strong><%= vendor.name %></strong><h2></td>
+    </tr>
     <% vendor.items.each do |item| %>
-      | <%= item.name %> $<%= item.price %> |
+      <tr>
+        <td><%= item.name %> $<%= item.price %></td>
+      </tr>
     <% end %>
-    <h3><button class="button"><%= link_to "Order From This Vendor", new_vendor_order_path(vendor) %></button>
+    <tr>
+      <td><button class="button"><%= link_to "Order From This Vendor", new_vendor_order_path(vendor) %></button></td>
+    </tr>
   <% end %>
+  </table>
 </div>

@@ -19,7 +19,6 @@ class OrdersController < ApplicationController
     @order = current_user.orders.build(order_params)
     if @order.total <= current_user.balance
       @order.place_order
-      binding.pry
       @order.save
       flash[:notice] = "Thank you for your order! It'll be delivered in 30 minutes :)"
       redirect_to order_path(@order)

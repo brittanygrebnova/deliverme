@@ -18,14 +18,20 @@
 </div>
 
 <div>
-  <h3>Check Out All These Awesome Vendors</h3>
+  <h2><strong>Check Out All These Awesome Vendors</strong</h2>
 </div>
 
 <div>
+  <table class="vendor-table">
   <% @vendors.each do |vendor| %>
-    <h3><%= vendor.name %></h3>
+    <tr>
+      <td><h2><%= vendor.name %><h2></td>
+    </tr>
     <% vendor.items.each do |item| %>
-      | <%= item.name %> $<%= item.price %> |
+      <tr>
+        <td><%= item.name %> $<%= item.price %></td>
+      </tr>
     <% end %>
   <% end %>
+  </table>
 </div>
