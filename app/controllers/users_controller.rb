@@ -3,6 +3,9 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    respond_to do |f|
+      f.html { render :show }
+      f.json { render json: @user}
   end
 
   def add_money
