@@ -14,9 +14,14 @@
   <% if @vendor.orders.empty? %>
     <%= "You don't have any orders yet." %>
   <% else %>
-    <% @vendor.orders.each do |order| %>
-      <%= order.readable_date %> | $<%= order.total %><br>
-      <button class="button"><%= link_to "View Order Details", order_path(order) %></button><br>
+      <% @vendor.orders.each do |order| %>
+      <table class="vendor-orders-table">
+        <tr>
+          <td><%= order.readable_date %> | $<%= order.total %></td>
+          <br>
+          <td><button class="button"><%= link_to "View Order Details", order_path(order) %></button></td><br>
+        </tr>
+      </table>
     <% end %>
   <% end %>
 </div>
@@ -26,8 +31,12 @@
   <% if @vendor.items.empty? %>
     <%= "You don't have any items for sale yet." %>
   <% else %>
-    <% @vendor.items.each do |item| %>
-      <%= item.name.titleize %>: $<%= item.price %><br>
+    <table class="vendor-items-table">
+      <% @vendor.items.each do |item| %>
+      <tr>
+        <td><%= item.name.titleize %>: $<%= item.price %></td><br>
+      </tr>
+    </table>
     <% end %>
   <% end %>
 </div>
