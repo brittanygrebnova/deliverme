@@ -21,7 +21,7 @@
   <button class="button"><%= link_to "Edit Your Account Info", edit_user_path(@user) %></button><br>
 
 
-  <button class="button"><%= link_to "Your Orders", orders_path %></button><br>
+  <button class="button" id="user-orders"><%= link_to "Your Orders", orders_path %></button><br>
 
 
   <button class="button"><%= link_to "Place a New Order", vendors_path(:user_id => current_user.id) %></button><br>

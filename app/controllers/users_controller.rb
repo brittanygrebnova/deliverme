@@ -5,7 +5,8 @@ class UsersController < ApplicationController
     @user = current_user
     respond_to do |f|
       f.html { render :show }
-      f.json { render json: @user}
+      f.json { render json: @user }
+    end
   end
 
   def add_money
@@ -26,6 +27,7 @@ class UsersController < ApplicationController
     amount = params[:user][:balance].to_i
     current_user.balance += amount
     current_user.save
+    flash[:notice] = "Hooray! #{amount} dollars has been added to your account balance."
     redirect_to user_path(current_user)
   end
 
