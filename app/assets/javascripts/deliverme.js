@@ -1,16 +1,3 @@
-// $(function () {
-//   console.log("deliverme.js is loaded")
-//   listenForClick()
-// })
-//
-// function listenForClick() {
-//   const userOrderButton =
-//   $(document).on("click", "button#user-orders", function (event) {
-//     event.preventDefault
-//     console.log("heyyyyy")
-//   })
-// }
-
 $(document).ready(function() {
   $("button#user-orders").click(function(e) {
     e.preventDefault();
@@ -20,11 +7,31 @@ $(document).ready(function() {
 })
 
 function getOrders() {
-  $.ajax({
-    url: 'https://localhost:3000/orders',
-    method: 'get',
-    dataType: 'json'
-  }).done(function(data) {
+  $.getJSON( 'https://localhost:3000/orders', function(data){
     console.log("the data is: ", data)
+    data["data"].forEach(function(order) {
+      let userOrder = new Order(order);
+      let userOrderHTML = userOrder.orderHTML();
+      document.getElementById("user-orders-list").innerHTML += userOrderHTML
+    })
   })
+}
+
+class Order {
+  constructor(obj) {
+    this.id = obj.id
+  }
+}
+
+function displayOrder(id) {
+  $.getJSON(`https://localhost:3000/orders/${id}`, function(data) {
+    console.log("the data for that order is: ", data)
+  })
+}
+
+Order.prototype.orderHTML = function() {
+  return (`
+    <div>
+      <strong><h3>Order # ${this.id}</h3></strong><button onclick="displayOrder(${this.id})" data-id="${this.id}">View Order Details</button>
+    `)
 }

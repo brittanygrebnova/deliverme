@@ -5,6 +5,10 @@ class OrdersController < ApplicationController
     if @orders.empty?
       flash[:notice] = "You haven't placed any orders yet."
     end
+    respond_to do |f|
+      f.html { render :index }
+      f.json { render json: @orders}
+    end
   end
 
   def new
@@ -30,10 +34,15 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @vendor = @order.vendor
+    @user = @order.user
     if DateTime.now > @order.created_at + 30.minutes
       @order.delivered = true
     end
-    # render json: @order
+    respond_to do |f|
+      f.html { render :show }
+      f.json { render :json => {:order => @order, :vendor => @vendor, :user => @user}}
+    end
   end
 
   def edit
