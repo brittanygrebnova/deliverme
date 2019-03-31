@@ -34,14 +34,12 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @vendor = @order.vendor
-    @user = @order.user
     if DateTime.now > @order.created_at + 30.minutes
       @order.delivered = true
     end
     respond_to do |f|
       f.html { render :show }
-      f.json { render :json => {:order => @order, :vendor => @vendor, :user => @user}}
+      f.json { render json: @order }
     end
   end
 
