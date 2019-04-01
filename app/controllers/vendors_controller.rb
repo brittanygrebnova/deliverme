@@ -2,11 +2,10 @@ class VendorsController < ApplicationController
 
   def index
     @vendors = Vendor.all
-    @user = User.find(params[:user_id])
+    # @user = User.find(params[:user_id])
     respond_to do |f|
       f.html { render :index }
-      f.json { render :json => {:vendor => @vendor,
-                                :user => @user}}
+      f.json { render json: @vendors }
     end
   end
 
