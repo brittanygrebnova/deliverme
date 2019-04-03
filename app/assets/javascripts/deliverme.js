@@ -27,7 +27,6 @@ class Order {
   constructor(obj) {
     this.id = obj.id
     this.items = obj.items
-    this.user = obj.user
     this.vendor = obj.vendor
   }
 }
@@ -56,11 +55,26 @@ function displayOrder(id) {
 
 function listVendors() {
   $.getJSON(`https://localhost:3000/vendors`, function(data){
-    let vendorButtons = ``
+    let vendorNames = `<br><strong>Choose A Vendor</strong><br>`
+    let itemButtons = `<form id="new-order-form"><br><strong>Choose Your Item(s)</strong><br>`
+    document.querySelector("#new-order-div").innerHTML = "<br><strong>Choose A Vendor</strong><br>"
     data["vendors"].forEach(function(vendor) {
-      btn = `<button onclick="displayItems(${vendor.id})" data-id="${vendor.id}">${vendor.name}</button>`
-      vendorButtons += btn + `<br>`
+      vendorName = `<br><button id="${vendor.name}" class="vendor-button"><strong>${vendor.name}</strong></button><br>`
+      vendorNames += vendorName
+      $("#new-order-div").html(vendorNames)
+      if (document.querySelectorAll(".vendor-button").length === data["vendors"].length) {
+        document.querySelector(".vendor-button").addEventListener("click", function() {
+          let vendor = data["vendors"].find(vendor => vendor.name == `${this.id}`)
+          vendor.items.forEach(function(item) {
+            itemButton = `<br><input type="checkbox" id="${item.name}" class="vendor-button"><strong>${item.name}: $${item.price}</strong></input><br>`
+            itemButtons += itemButton
+            $("#new-order-div").html(itemButtons + `<br><input type="submit" value="Place Your Order"></input></form>`)
+            $("#new-order-form").on("submit", function() {
+              debugger
+            })
+          })
+        })
+      }
     })
-    $("div#new-order-form").html(`<br><strong>Choose a Vendor</strong><br>` + vendorButtons)
   })
 }
