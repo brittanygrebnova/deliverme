@@ -3,6 +3,7 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :item_orders
   has_many :items, :through => :item_orders
+  accepts_nested_attributes_for :items
 
   def readable_date
     self.created_at.strftime("%b %d, %Y")

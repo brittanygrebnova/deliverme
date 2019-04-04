@@ -5,7 +5,7 @@
   <%= form_for @order do |f| %>
     <%= f.hidden_field :vendor_id %>
     Choose Your Item(s ):<br>
-    <%= f.collection_check_boxes(:item_ids, @items, :id, :name) %><br>
+    <%= f.collection_check_boxes(:item_ids, @items, :id, :name, include_hidden: false) %><br>
     <%= f.submit "Place Order", :class => "button" %>
   <% end %>
 </div>

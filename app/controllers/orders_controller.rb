@@ -18,17 +18,19 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @vendor = Vendor.find(params[:order][:vendor_id])
-    @items = Item.find(params[:order][:item_ids].reject(&:blank?))
     @order = current_user.orders.build(order_params)
-    if @order.total <= current_user.balance
-      @order.place_order
-      @order.save
-      flash[:notice] = "Thank you for your order! It'll be delivered in 30 minutes :)"
-      redirect_to order_path(@order)
-    else
-      flash[:notice] = "Sorry, you don't have enough money to place this order."
-      redirect_to user_path(current_user)
+    @vendor = Vendor.find(params[:order][:vendor_id])
+    @items = Item.find(params[:order][:item_ids])
+    # if @order.total <= current_user.balance
+    #   @order.place_order
+    #   @order.save
+    #   flash[:notice] = "Thank you for your order! It'll be delivered in 30 minutes :)"
+    if @order.save
+      render json: @order
+      # redirect_to order_path(@order)
+    # else
+    #   flash[:notice] = "Sorry, you don't have enough money to place this order."
+    #   redirect_to user_path(current_user)
     end
   end
 
@@ -69,7 +71,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:user_id, :vendor_id, item_ids: [])
+    params.require(:order).permit(:vendor_id, :item_ids, item_ids: [])
   end
 
 
