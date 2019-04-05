@@ -21,7 +21,9 @@
     <% elsif vendor_signed_in? %>
       <button class="button"><%= link_to('Logout', destroy_vendor_session_path, method: :delete) %></button><br>
     <% end %>
+    <div id="results">
     <%= yield %>
+    </div>
   </div>
   </body>
 </html>

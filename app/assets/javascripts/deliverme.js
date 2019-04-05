@@ -8,15 +8,7 @@ $(document).ready(function() {
     e.preventDefault();
     console.log("default prevented!");
     const values = $(this).serialize()
-    $.ajax({
-      url: 'https://localhost:3000/orders',
-      type: 'post',
-      dataType: 'json',
-      data: values,
-    })
-    .done(function(data) {
-      console.log(data)
-    })
+    placeNewOrder(values)
   })
 
 })
@@ -62,34 +54,50 @@ function displayOrder(id) {
   })
 }
 
-function newOrder() {
-  let vendorNames = `<br><strong>Choose A Vendor</strong><br>`;
-  let itemButtons = `<form id="new-order-form"><br><strong>Choose Your Item(s)</strong><br>`;
-  let orderItems = [];
-  let vendor;
-  $.getJSON(`https://localhost:3000/vendors`, function(data){
-    document.querySelector("#new-order-div").innerHTML = "<br><strong>Choose A Vendor</strong><br>"
-    data["vendors"].forEach(function(vendor) {
-      vendorName = `<br><button id="${vendor.name}" class="vendor-button"><strong>${vendor.name}</strong></button><br>`
-      vendorNames += vendorName
-      $("#new-order-div").html(vendorNames)
-      if (document.querySelectorAll(".vendor-button").length === data["vendors"].length) {
-        document.querySelector(".vendor-button").addEventListener("click", function() {
-          vendor = data["vendors"].find(vendor => vendor.name == `${this.id}`)
-          vendor.items.forEach(function(item) {
-            itemButton = `<br><input type="checkbox" id="${item.name}" class="item-button"><strong>${item.name}: $${item.price}</strong></input><br>`
-            itemButtons += itemButton
-            $("#new-order-div").html(itemButtons + `<br><input type="submit" value="Place Your Order"></input></form>`)
-            $("#new-order-form").on("submit", function() {
-              $.each($("input[class='item-button']:checked"), function() {
-                let items = vendor["items"].find(item => item.name == `${this.id}`)
-                orderItems.push(items)
-                let newUserOrder = new Order({ "id" : Order.length + 1, "items" : orderItems, "vendor" : vendor})
-              })
-            })
-          })
-        })
-      }
-    })
+function placeNewOrder(serializedValues) {
+  $.ajax({
+    url: 'https://localhost:3000/orders',
+    type: 'post',
+    dataType: 'json',
+    data: serializedValues,
+  })
+  .done(function(data) {
+    $('#results').html('')
+    console.log(data)
+    const newOrder = new Order(data["order"])
+    const newOrderHTML = newOrder.orderHTML()
+    $('#results').html(newOrderHTML)
   })
 }
+
+// function newOrder() {
+//   let vendorNames = `<br><strong>Choose A Vendor</strong><br>`;
+//   let itemButtons = `<form id="new-order-form"><br><strong>Choose Your Item(s)</strong><br>`;
+//   let orderItems = [];
+//   let vendor;
+//   $.getJSON(`https://localhost:3000/vendors`, function(data){
+//     document.querySelector("#new-order-div").innerHTML = "<br><strong>Choose A Vendor</strong><br>"
+//     data["vendors"].forEach(function(vendor) {
+//       vendorName = `<br><button id="${vendor.name}" class="vendor-button"><strong>${vendor.name}</strong></button><br>`
+//       vendorNames += vendorName
+//       $("#new-order-div").html(vendorNames)
+//       if (document.querySelectorAll(".vendor-button").length === data["vendors"].length) {
+//         document.querySelector(".vendor-button").addEventListener("click", function() {
+//           vendor = data["vendors"].find(vendor => vendor.name == `${this.id}`)
+//           vendor.items.forEach(function(item) {
+//             itemButton = `<br><input type="checkbox" id="${item.name}" class="item-button"><strong>${item.name}: $${item.price}</strong></input><br>`
+//             itemButtons += itemButton
+//             $("#new-order-div").html(itemButtons + `<br><input type="submit" value="Place Your Order"></input></form>`)
+//             $("#new-order-form").on("submit", function() {
+//               $.each($("input[class='item-button']:checked"), function() {
+//                 let items = vendor["items"].find(item => item.name == `${this.id}`)
+//                 orderItems.push(items)
+//                 let newUserOrder = new Order({ "id" : Order.length + 1, "items" : orderItems, "vendor" : vendor})
+//               })
+//             })
+//           })
+//         })
+//       }
+//     })
+//   })
+// }
