@@ -2,8 +2,13 @@
 
 Create a user account and place an order with one of the DeliverMe vendors to have your ordered 'delivered' straight to your door!
 
-Some specifications:
+## Installation
 
-* Ruby version(ruby '2.3.3')
+Install DeliverMe by forking and cloning this repo then running bundle install.
 
-* Rails version('rails', '~> 5.2.2')
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
