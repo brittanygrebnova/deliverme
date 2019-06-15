@@ -10,12 +10,36 @@ $(document).ready(function() {
     const values = $(this).serialize()
     placeNewOrder(values)
   })
-
+  $("button#sort-by-vendor").click(function () {
+    sortOrders()
+  })
 })
 
 function getOrders() {
   $.getJSON( 'https://localhost:3000/orders', function(data){
     console.log("the data is: ", data)
+    data["orders"].forEach(function(order) {
+      let userOrder = new Order(order);
+      let userOrderHTML = userOrder.orderHTML();
+      document.getElementById("user-orders-list").innerHTML += userOrderHTML
+    })
+  })
+}
+
+function sortOrders() {
+  $.getJSON( 'https://localhost:3000/orders', function(data){
+    console.log("the data is: ", data)
+    data["orders"].sort(function(a, b) {
+      const aVendorName = a.vendor.name
+      const bVendorName = b.vendor.name
+      if (aVendorName < bVendorName) {
+        return -1;
+      }
+      if (aVendorName > bVendorName) {
+        return 1;
+      }
+      return 0;
+    })
     data["orders"].forEach(function(order) {
       let userOrder = new Order(order);
       let userOrderHTML = userOrder.orderHTML();

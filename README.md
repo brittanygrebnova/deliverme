@@ -1,6 +1,6 @@
 # DeliverMe: A Rails App
 
-Create a user account and place an order with one of the DeliverMe vendors to have your ordered 'delivered' straight to your door!
+You're hungry. You want food delivered to your door within 30 minutes and don't mind paying a $5 delivery fee. You've come to the right place! Create a user account, place an order with one of our award-winning DeliverMe vendors, and satisfy your hunger any time of day.
 
 ## Installation
 
