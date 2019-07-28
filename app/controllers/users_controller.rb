@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     amount = params[:user][:balance].to_i
     current_user.balance += amount
     current_user.save
-    flash[:notice] = "Hooray! #{amount} dollars has been added to your account balance."
+    flash[:notice] = "Hooray! You added $#{amount} to your account balance."
     redirect_to user_path(current_user)
   end
 
