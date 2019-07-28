@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Deliverme</title>
+    <%= csrf_meta_tags %> <%= csp_meta_tag %> <%= stylesheet_link_tag
+    'application', media: 'all' %> <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <div id="wrap">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <% if flash[:warning] %> <%= flash[:warning].join(" ") %> <% end %><br />
+      <% if user_signed_in? %>
+      <button class="button">
+        <%= link_to('Logout', destroy_user_session_path, method: :delete) %></button
+      ><br />
+      <% elsif vendor_signed_in? %>
+      <button class="button">
+        <%= link_to('Logout', destroy_vendor_session_path, method: :delete) %></button
+      ><br />
+      <% end %>
+      <div id="results"><%= yield %></div>
+    </div>
+  </body>
+</html>
